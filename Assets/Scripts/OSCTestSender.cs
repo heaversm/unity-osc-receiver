@@ -33,7 +33,7 @@ public class OSCTestSender : MonoBehaviour
     {
         //Debug.LogWarning("time = " + Time.time);
 
-        OscMessage oscM = Osc.StringToOscMessage("/test1 TRUE 23 0.501 bla");
+        OscMessage oscM = Osc.StringToOscMessage("/1/push1");
         oscHandler.Send(oscM);
     }
 
