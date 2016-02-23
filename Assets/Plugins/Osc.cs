@@ -156,8 +156,7 @@ using System;
     {
       Hashtable.Synchronized(AddressTable).Add(key, ah);
     }
-
-
+		
 
     // General static helper that returns a string suitable for printing representing the supplied
     // OscMessage.

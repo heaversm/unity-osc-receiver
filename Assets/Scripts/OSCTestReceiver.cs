@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 
 // Simple OSC test communication script
-[AddComponentMenu("Scripts/OSCTestSender")]
-public class OSCTestSender : MonoBehaviour
+[AddComponentMenu("Scripts/OSCTestReceiver")]
+public class OSCTestReceiver : MonoBehaviour
 {
 
     private Osc oscHandler;
 
-    public string remoteIp;
+	public string remoteIp;
     public int sendToPort;
     public int listenerPort;
 
 
-    ~OSCTestSender()
+    ~OSCTestReceiver()
     {
         if (oscHandler != null)
         {
@@ -31,10 +31,7 @@ public class OSCTestSender : MonoBehaviour
     // Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
-        //Debug.LogWarning("time = " + Time.time);
-
-        OscMessage oscM = Osc.StringToOscMessage("/1/push1");
-        oscHandler.Send(oscM);
+ 
     }
 
 
@@ -62,12 +59,10 @@ public class OSCTestSender : MonoBehaviour
 	    oscHandler = GetComponent<Osc>();
         oscHandler.init(udp);
 
-        oscHandler.SetAddressHandler("/hand1", Example);
+        oscHandler.SetAllMessageHandler(AllMessageHandler);
     }
-
-    public static void Example(OscMessage m)
-    {
-        Debug.Log("--------------> OSC example message received: ("+m+")");
-    }
-
+		
+	public static void AllMessageHandler(OscMessage m){
+		print(m);
+	}
 }
